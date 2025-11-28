@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F4F4"
+    tools:context=".ResponderSignUp">
+
+    <!-- Scrollable Content -->
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Header Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="iReport Camarines Norte"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#007E33"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="“Connecting PNP, PDRRMO, and BFP for a Faster, Safer Response.”"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:textColor="#444"/>
+            </LinearLayout>
+
+            <!-- Title: RESPONDERS -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RESPONDERS"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:paddingLeft="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <!-- Main Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:background="@android:color/white"
+                android:elevation="4dp"
+                android:orientation="vertical">
+
+                <!-- Title -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sign Up"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:layout_marginBottom="25dp" />
+
+                <!-- Full Name -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Full Name"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+                <EditText
+                    android:id="@+id/fullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:hint="Enter your full name"
+                    android:drawableLeft="@android:drawable/ic_menu_myplaces"
+                    android:padding="10dp"
+                    android:background="@android:drawable/edit_text" />
+
+                <!-- Contact Number -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contact Number"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+                <EditText
+                    android:id="@+id/contactNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:hint="090X XXX XXXX"
+                    android:inputType="phone"
+                    android:drawableLeft="@android:drawable/ic_menu_call"
+                    android:padding="10dp"
+                    android:background="@android:drawable/edit_text" />
+
+                <!-- Email Address -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email Address"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:hint="Enter Email"
+                    android:inputType="textEmailAddress"
+                    android:drawableLeft="@android:drawable/ic_dialog_email"
+                    android:padding="10dp"
+                    android:background="@android:drawable/edit_text" />
+
+                <!-- Beneficiary/Agency -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Beneficiary/Agency"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+                <Spinner
+                    android:id="@+id/agencySpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@android:drawable/edit_text" />
+
+
+
+                <!-- Password -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Password"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:hint="Create a password"
+                    android:inputType="textPassword"
+                    android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+                    android:drawableRight="@android:drawable/ic_menu_view"
+                    android:padding="10dp"
+                    android:background="@android:drawable/edit_text" />
+
+                <!-- Confirm Password -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Confirm password"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+                <EditText
+                    android:id="@+id/confirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="20dp"
+                    android:hint="Confirm your password"
+                    android:inputType="textPassword"
+                    android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+                    android:drawableRight="@android:drawable/ic_menu_view"
+                    android:padding="10dp"
+                    android:background="@android:drawable/edit_text" />
+
+                <!-- Sign Up Button -->
+                <Button
+                    android:id="@+id/btnSignUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Sign Up"
+                    android:textColor="#FFFFFF"
+                    android:background="#00A63D"
+                    android:layout_marginBottom="15dp" />
+
+                <!-- Already have account -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Already have an account?"
+                        android:textColor="#444"/>
+
+                    <TextView
+                        android:id="@+id/tvSignIn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" Sign In"
+                        android:textColor="#0000EE"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

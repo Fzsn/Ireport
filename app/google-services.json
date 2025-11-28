@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "841875951346",
+    "firebase_url": "https://iresponderapp-default-rtdb.firebaseio.com",
+    "project_id": "iresponderapp",
+    "storage_bucket": "iresponderapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841875951346:android:270c12a5aa14acefb74a6b",
+        "android_client_info": {
+          "package_name": "com.example.iresponderapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeQwB5497TpxDh7mCqy6MB3gxxjUS8y9I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
