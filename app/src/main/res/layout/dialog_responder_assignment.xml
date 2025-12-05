@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Assignment Criteria:"
+        android:textSize="14sp"
+        android:textColor="#555"/>
+
+    <TextView
+        android:id="@+id/assignmentCriteriaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agency: PNP, Location: Daet"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#333"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Qualified Responder:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"/>
+
+    <Spinner
+        android:id="@+id/responderSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:spinnerMode="dropdown"/>
+
+</LinearLayout>

@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Iresponderapp">
         <activity
+            android:name=".EditReceiverProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AccomplishedDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity_incident_details"
+            android:exported="false" />
+        <activity
             android:name=".RecieverDashboard"
             android:exported="false" />
         <activity

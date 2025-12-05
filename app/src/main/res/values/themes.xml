@@ -6,4 +6,17 @@
     </style>
 
     <style name="Theme.Iresponderapp" parent="Base.Theme.Iresponderapp" />
+
+    <style name="DetailLabel">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#555</item>
+        <item name="android:paddingVertical">4dp</item>
+    </style>
+    <style name="DetailValue" parent="DetailLabel">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#222</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+
+    </style>
 </resources>

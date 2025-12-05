@@ -23,12 +23,12 @@ import com.google.firebase.database.FirebaseDatabase;
 public class ResponderSignUp extends AppCompatActivity {
 
     EditText fullName, contactNumber, email, password, confirmPassword;
-    Spinner beneficiaryAgency;
+    Spinner beneficiaryAgency, locationSpinner; // ⭐ ADDED locationSpinner
     Button signUpBtn;
     TextView signInText;
 
     DatabaseReference responderDB;
-    FirebaseAuth auth;  // ⭐ ADDED
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,7 @@ public class ResponderSignUp extends AppCompatActivity {
         fullName = findViewById(R.id.fullName);
         contactNumber = findViewById(R.id.contactNumber);
         email = findViewById(R.id.email);
+        locationSpinner = findViewById(R.id.locationSpinner); // ⭐ CONNECTED
         beneficiaryAgency = findViewById(R.id.agencySpinner);
         password = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.confirmPassword);
@@ -60,21 +61,43 @@ public class ResponderSignUp extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         // -----------------------------
-        // 📌 Agency Spinner Options
+        // 📌 Location Spinner Options (NEW)
+        // -----------------------------
+        String[] locations = {
+                "Basud",
+                "Capalonga",
+                "Daet",
+                "Jose Panganiban",
+                "Labo",
+                "Mercedes",
+                "Paracale",
+                "San Lorenzo Ruiz",
+                "San Vicente",
+                "Santa Elena",
+                "Talisay",
+                "Vinzons"
+        };
+
+        ArrayAdapter<String> locationAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item,
+                locations);
+
+        locationSpinner.setAdapter(locationAdapter); // ⭐ SETTING ADAPTER
+
+        // -----------------------------
+        // 📌 Agency Spinner Options (UPDATED)
         // -----------------------------
         String[] agencies = {
                 "PNP",
                 "BFP",
-                "MDRRMO",
-                "Responder Volunteer",
-                "Other"
+                "MDRRMO"
         };
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+        ArrayAdapter<String> agencyAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item,
                 agencies);
 
-        beneficiaryAgency.setAdapter(adapter);
+        beneficiaryAgency.setAdapter(agencyAdapter); // Renamed adapter for clarity
 
         // -----------------------------
         // ⭐ Realtime DB Reference
@@ -105,6 +128,7 @@ public class ResponderSignUp extends AppCompatActivity {
         String name = fullName.getText().toString().trim();
         String contact = contactNumber.getText().toString().trim();
         String userEmail = email.getText().toString().trim();
+        String location = locationSpinner.getSelectedItem().toString(); // ⭐ GETTING LOCATION
         String agency = beneficiaryAgency.getSelectedItem().toString();
         String pass = password.getText().toString().trim();
         String confirmPass = confirmPassword.getText().toString().trim();
@@ -112,6 +136,8 @@ public class ResponderSignUp extends AppCompatActivity {
         // -----------------------------
         // ❗ VALIDATION
         // -----------------------------
+        // NOTE: You should also validate that the spinner selections are not empty,
+        // but since you are using a predefined array, the first item will be selected by default.
         if (TextUtils.isEmpty(name) ||
                 TextUtils.isEmpty(contact) ||
                 TextUtils.isEmpty(userEmail) ||
@@ -144,11 +170,14 @@ public class ResponderSignUp extends AppCompatActivity {
                         String uid = auth.getCurrentUser().getUid();
 
                         // Create user object
+                        // NOTE: You'll need to update your ResponderModel class
+                        // to include a field for 'location'
                         ResponderModel responder = new ResponderModel(
                                 uid,
                                 name,
                                 contact,
                                 userEmail,
+                                location, // ⭐ ADDING LOCATION
                                 agency,
                                 pass
                         );

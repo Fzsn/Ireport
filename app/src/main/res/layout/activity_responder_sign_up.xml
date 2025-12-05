@@ -8,7 +8,6 @@
     android:background="#F4F4F4"
     tools:context=".ResponderSignUp">
 
-    <!-- Scrollable Content -->
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
@@ -24,7 +23,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Header Card -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,7 +51,6 @@
                     android:textColor="#444"/>
             </LinearLayout>
 
-            <!-- Title: RESPONDERS -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,7 +61,6 @@
                 android:paddingLeft="5dp"
                 android:layout_marginBottom="5dp"/>
 
-            <!-- Main Card -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -73,7 +69,6 @@
                 android:elevation="4dp"
                 android:orientation="vertical">
 
-                <!-- Title -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -83,7 +78,6 @@
                     android:textColor="#000"
                     android:layout_marginBottom="25dp" />
 
-                <!-- Full Name -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -101,7 +95,6 @@
                     android:padding="10dp"
                     android:background="@android:drawable/edit_text" />
 
-                <!-- Contact Number -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -120,7 +113,6 @@
                     android:padding="10dp"
                     android:background="@android:drawable/edit_text" />
 
-                <!-- Email Address -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -139,7 +131,20 @@
                     android:padding="10dp"
                     android:background="@android:drawable/edit_text" />
 
-                <!-- Beneficiary/Agency -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Location (Municipality)"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+                <Spinner
+                    android:id="@+id/locationSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@android:drawable/edit_text" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -156,7 +161,6 @@
 
 
 
-                <!-- Password -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -176,7 +180,6 @@
                     android:padding="10dp"
                     android:background="@android:drawable/edit_text" />
 
-                <!-- Confirm Password -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -196,7 +199,6 @@
                     android:padding="10dp"
                     android:background="@android:drawable/edit_text" />
 
-                <!-- Sign Up Button -->
                 <Button
                     android:id="@+id/btnSignUp"
                     android:layout_width="match_parent"
@@ -206,7 +208,6 @@
                     android:background="#00A63D"
                     android:layout_marginBottom="15dp" />
 
-                <!-- Already have account -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

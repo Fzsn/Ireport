@@ -50,7 +50,7 @@ public class receiverSignUp extends AppCompatActivity {
         confirmPassword = findViewById(R.id.confirmPassword);
 
         agencySpinner = findViewById(R.id.agencySpinner);
-        locationSpinner = findViewById(R.id.Location);
+        locationSpinner = findViewById(R.id.Location); // Retaining your XML ID: 'Location'
 
         btnSignUp = findViewById(R.id.btnSignUp);
         tvSignIn = findViewById(R.id.tvSignIn);
@@ -58,11 +58,27 @@ public class receiverSignUp extends AppCompatActivity {
         // -------------------------
         //   Populate Spinners
         // -------------------------
+        // AGENCY SPINNER (UPDATED: Only PNP, BFP, MDRRMO)
         String[] agencies = {"Select Agency", "PNP", "BFP", "MDRRMO"};
         ArrayAdapter<String> agencyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, agencies);
         agencySpinner.setAdapter(agencyAdapter);
 
-        String[] locations = {"Select Location", "Daet", "Labo", "Paracale", "Vinzons", "Talisay"};
+        // LOCATION SPINNER (UPDATED: Full list of municipalities)
+        String[] locations = {
+                "Select Location",
+                "Basud",
+                "Capalonga",
+                "Daet",
+                "Jose Panganiban",
+                "Labo",
+                "Mercedes",
+                "Paracale",
+                "San Lorenzo Ruiz",
+                "San Vicente",
+                "Santa Elena",
+                "Talisay",
+                "Vinzons"
+        };
         ArrayAdapter<String> locationAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, locations);
         locationSpinner.setAdapter(locationAdapter);
 
@@ -138,6 +154,7 @@ public class receiverSignUp extends AppCompatActivity {
                         // ------------------------------------------
                         // SAVE USER DATA IN REALTIME DATABASE
                         // ------------------------------------------
+                        // NOTE: Ensure your ReceiverModel constructor is updated to accept 'location'
                         ReceiverModel model = new ReceiverModel(
                                 receiverId,
                                 name,
