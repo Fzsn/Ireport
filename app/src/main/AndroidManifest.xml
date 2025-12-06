@@ -12,6 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Iresponderapp">
         <activity
+            android:name=".EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MdrrmoReportFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BfpReportFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PnpReportFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ResponderDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditReceiverProfileActivity"
             android:exported="false" />
         <activity
@@ -46,7 +61,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
     </application>
 
 </manifest>

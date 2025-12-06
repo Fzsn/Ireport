@@ -106,7 +106,7 @@ public class activity_incident_details extends AppCompatActivity {
                     String info = snapshot.child("additionalInfo").getValue(String.class);
                     String imageUrl = snapshot.child("imageURL").getValue(String.class);
 
-                    // --- Derive Agency and Location for Filtering ---
+                    // --- Derive Agency ---
                     if ("Fire".equalsIgnoreCase(type)) {
                         incidentAgency = "BFP";
                     } else if ("Crime".equalsIgnoreCase(type)) {
@@ -115,8 +115,21 @@ public class activity_incident_details extends AppCompatActivity {
                         incidentAgency = "MDRRMO";
                     }
 
-                    // NOTE: Setting incidentLocation to 'Labo' as per your database structure.
-                    incidentLocation = "Labo";
+                    // --- FIX: Detect Location dynamically from Address ---
+                    if (address != null) {
+                        String addrLower = address.toLowerCase();
+                        if (addrLower.contains("daet")) {
+                            incidentLocation = "Daet";
+                        } else if (addrLower.contains("labo")) {
+                            incidentLocation = "Labo";
+                        } else if (addrLower.contains("basud")) {
+                            incidentLocation = "Basud";
+                        } else {
+                            incidentLocation = "Daet"; // Default Fallback
+                        }
+                    } else {
+                        incidentLocation = "Daet";
+                    }
 
                     // --- Populate Views ---
                     detail_incidentCode.setText("Incident #" + code);
@@ -128,9 +141,11 @@ public class activity_incident_details extends AppCompatActivity {
 
                     detail_address_full.setText("Address: " + address);
                     detail_coordinate_display.setText(incidentLatitude + ", " + incidentLongitude);
+
+                    // Show the derived location
                     detail_location_context.setText(incidentLocation + ", Camarines Norte");
 
-                    if (imageUrl != null && !(imageUrl != null)) {
+                    if (imageUrl != null && !imageUrl.isEmpty()) {
                         Picasso.get().load(imageUrl).into(detail_incidentImage);
                     } else {
                         detail_incidentImage.setImageResource(R.drawable.placeholder_image);
@@ -156,7 +171,7 @@ public class activity_incident_details extends AppCompatActivity {
     private void setupActionListeners() {
         String incidentCode = getIntent().getStringExtra("INCIDENT_CODE");
 
-        // Map View Listener (Using robust DMS conversion)
+        // Map View Listener
         mapClickableArea.setOnClickListener(v -> {
             double decimalLat = convertDMSToDecimal(incidentLatitude);
             double decimalLon = convertDMSToDecimal(incidentLongitude);
@@ -202,7 +217,7 @@ public class activity_incident_details extends AppCompatActivity {
                     String rLocation = data.child("location").getValue(String.class);
                     String rFullName = data.child("fullName").getValue(String.class);
 
-                    // CRITICAL FIX: Ensure string safety (non-null and using trimmed/case-insensitive comparison)
+                    // Ensure string safety
                     if (rAgency != null && rLocation != null && rFullName != null) {
 
                         boolean agencyMatches = rAgency.trim().equalsIgnoreCase(agency);

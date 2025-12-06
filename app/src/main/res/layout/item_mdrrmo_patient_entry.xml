@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="3dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+            <TextView
+                android:id="@+id/patientHeaderTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Patient Record"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#D32F2F"/>
+            <ImageButton
+                android:id="@+id/btnRemoveEntry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="#D32F2F"/>
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/SectionHeader" android:text="1. Patient Information" />
+        <EditText android:id="@+id/editPatientName" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Surname, Name, M.I."/>
+        <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <EditText android:id="@+id/editPatientAge" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Age" android:inputType="number"/>
+            <EditText android:id="@+id/editPatientSex" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Sex (M/F)"/>
+        </LinearLayout>
+        <EditText android:id="@+id/editPatientAddress" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Address"/>
+        <EditText android:id="@+id/editNextOfKin" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Next of Kin / Contact"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/SectionHeader" android:text="2. Primary Survey" />
+        <EditText android:id="@+id/editChiefComplaint" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Chief Complaint"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/InputLabel" android:text="C-Spine"/>
+        <Spinner android:id="@+id/spinnerCSpine" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:entries="@array/cspine_options" android:minHeight="48dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/InputLabel" android:text="Airway"/>
+        <Spinner android:id="@+id/spinnerAirway" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:entries="@array/airway_status_options" android:minHeight="48dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/InputLabel" android:text="Breathing"/>
+        <Spinner android:id="@+id/spinnerBreathing" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:entries="@array/breathing_status_options" android:minHeight="48dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/InputLabel" android:text="Pulse"/>
+        <Spinner android:id="@+id/spinnerPulse" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:entries="@array/pulse_status_options" android:minHeight="48dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/InputLabel" android:text="Skin"/>
+        <Spinner android:id="@+id/spinnerSkin" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:entries="@array/skin_status_options" android:minHeight="48dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/InputLabel" android:text="Cap Refill"/>
+        <Spinner android:id="@+id/spinnerCapRefill" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:entries="@array/cap_refill_options" android:minHeight="48dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/InputLabel" android:text="Loss of Consciousness"/>
+        <Spinner android:id="@+id/spinnerLOC" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:entries="@array/loc_options" android:minHeight="48dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/InputLabel" android:text="Consciousness (AVPU)"/>
+        <Spinner android:id="@+id/spinnerConsciousness" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:entries="@array/consciousness_options" android:minHeight="48dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/SectionHeader" android:text="3. Secondary Survey (SAMPLE)" />
+        <EditText android:id="@+id/editSigns" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="(S) Signs &amp; Symptoms"/>
+        <EditText android:id="@+id/editAllergies" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="(A) Allergies"/>
+        <EditText android:id="@+id/editMeds" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="(M) Medications"/>
+        <EditText android:id="@+id/editHistory" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="(P) Past Medical History"/>
+        <EditText android:id="@+id/editOral" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="(L) Last Oral Intake"/>
+        <EditText android:id="@+id/editEvents" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="(E) Events Leading To"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/SectionHeader" android:text="4. Vital Signs (3 Takes)" />
+        <include layout="@layout/row_vital_sign_input" android:id="@+id/rowObsTime"/>
+        <include layout="@layout/row_vital_sign_input" android:id="@+id/rowPulseRate"/>
+        <include layout="@layout/row_vital_sign_input" android:id="@+id/rowRespRate"/>
+        <include layout="@layout/row_vital_sign_input" android:id="@+id/rowSaO2"/>
+        <include layout="@layout/row_vital_sign_input" android:id="@+id/rowBP"/>
+        <include layout="@layout/row_vital_sign_input" android:id="@+id/rowTemp"/>
+        <include layout="@layout/row_vital_sign_input" android:id="@+id/rowCapRefillVital"/>
+        <include layout="@layout/row_vital_sign_input" android:id="@+id/rowGlucose"/>
+        <include layout="@layout/row_vital_sign_input" android:id="@+id/rowPain"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/SectionHeader" android:text="5. GCS" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <EditText android:id="@+id/editGcsEye" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Eye"/>
+            <EditText android:id="@+id/editGcsVerbal" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Verbal"/>
+            <EditText android:id="@+id/editGcsMotor" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Motor"/>
+            <EditText android:id="@+id/editGcsTotal" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Total"/>
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/SectionHeader" android:text="6. Management" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/InputLabel" android:text="Airway &amp; Breathing"/>
+        <Spinner android:id="@+id/spinnerManageAirway" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:entries="@array/manage_airway_options" android:minHeight="48dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/InputLabel" android:text="Circulation"/>
+        <Spinner android:id="@+id/spinnerManageCirc" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:entries="@array/manage_circ_options" android:minHeight="48dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/InputLabel" android:text="Wound/Burn Care"/>
+        <Spinner android:id="@+id/spinnerManageWound" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:entries="@array/manage_wound_options" android:minHeight="48dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/InputLabel" android:text="Immobilization"/>
+        <Spinner android:id="@+id/spinnerManageImmob" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:entries="@array/manage_immob_options" android:minHeight="48dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/InputLabel" android:text="Other Interventions"/>
+        <Spinner android:id="@+id/spinnerManageOther" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:entries="@array/manage_other_options" android:minHeight="48dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/SectionHeader"
+            android:text="7. Injury Details" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/InputLabel"
+            android:text="Injury Type(s) (Tap to Select)"/>
+        <EditText
+            android:id="@+id/editInjuryType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/FormInput"
+            android:hint="Select injury types..."
+            android:focusable="false"
+            android:clickable="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/InputLabel"
+            android:text="Affected Body Parts (Tap to Select)"/>
+        <EditText
+            android:id="@+id/editBodyParts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/FormInput"
+            android:hint="Select body parts..."
+            android:focusable="false"
+            android:clickable="true"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/InputLabel" android:text="Patient Narrative"/>
+        <EditText android:id="@+id/editPatientNarrative" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:minLines="3"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

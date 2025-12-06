@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/incidentCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#222"
+                android:text="#IR-ABC123"/>
+
+            <TextView
+                android:id="@+id/incidentPriority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:textSize="14sp"
+                android:textColor="@color/blue"
+                android:text="ACTIVE"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/incidentType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#444"
+            android:layout_marginTop="4dp"
+            android:text="Crime"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date: "
+                android:textColor="#666"/>
+            <TextView
+                android:id="@+id/incidentDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#666"
+                android:text="2025-10-22"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location: "
+                android:textColor="#666"/>
+            <TextView
+                android:id="@+id/incidentLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#666"
+                android:text="Vinzon Ave, Daet, Camarines Norte"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnViewDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#3F51B5"
+            android:text="view details"
+            android:textColor="#FFF" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="nature_of_call_options">
+        <item>Emergency</item>
+        <item>Non-Emergency</item>
+    </string-array>
+
+    <string-array name="emergency_type_options">
+        <item>Medical</item>
+        <item>Trauma</item>
+    </string-array>
+
+    <string-array name="area_type_options">
+        <item>Residential</item>
+        <item>Commercial</item>
+        <item>Recreation</item>
+        <item>Road</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="sex_options">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="cspine_options">
+        <item>Not Indicated</item>
+        <item>Suspected</item>
+    </string-array>
+
+    <string-array name="airway_status_options">
+        <item>Clear</item>
+        <item>Partially Obstructed</item>
+        <item>Obstructed</item>
+    </string-array>
+    <string-array name="airway_options">
+        <item>Clear</item>
+        <item>Partially Obstructed</item>
+        <item>Obstructed</item>
+    </string-array>
+
+    <string-array name="breathing_status_options">
+        <item>Normal</item>
+        <item>Fast</item>
+        <item>Slow</item>
+        <item>Absent</item>
+    </string-array>
+    <string-array name="breathing_options">
+        <item>Normal</item>
+        <item>Fast</item>
+        <item>Slow</item>
+        <item>Absent</item>
+    </string-array>
+
+    <string-array name="pulse_status_options">
+        <item>Present</item>
+        <item>Absent</item>
+        <item>Hemorrhage</item>
+    </string-array>
+    <string-array name="circulation_options">
+        <item>Present</item>
+        <item>Absent</item>
+        <item>Hemorrhage</item>
+    </string-array>
+
+    <string-array name="skin_status_options">
+        <item>Normal</item>
+        <item>Pale</item>
+        <item>Flushed</item>
+        <item>Cyanosed</item>
+    </string-array>
+    <string-array name="skin_options">
+        <item>Normal</item>
+        <item>Pale</item>
+        <item>Flushed</item>
+        <item>Cyanosed</item>
+    </string-array>
+
+    <string-array name="cap_refill_options">
+        <item>&lt; 2 Seconds</item>
+        <item>&gt; 2 Seconds</item>
+    </string-array>
+
+    <string-array name="loc_options">
+        <item>No</item>
+        <item>Yes</item>
+    </string-array>
+
+    <string-array name="consciousness_options">
+        <item>Alert</item>
+        <item>Verbal Response</item>
+        <item>Painful Stimuli</item>
+        <item>Unresponsive</item>
+    </string-array>
+
+    <string-array name="manage_airway_options">
+        <item>None</item>
+        <item>Open Airway</item>
+        <item>Suction</item>
+        <item>Nasal Cannula</item>
+        <item>Face Mask</item>
+        <item>NRB Mask</item>
+        <item>Airway Adjuncts</item>
+        <item>BVM</item>
+    </string-array>
+    <string-array name="airway_management_options">
+        <item>None</item>
+        <item>Open Airway</item>
+        <item>Suction</item>
+        <item>Nasal Cannula</item>
+        <item>Face Mask</item>
+        <item>NRB Mask</item>
+        <item>Airway Adjuncts</item>
+        <item>BVM</item>
+    </string-array>
+
+    <string-array name="manage_circ_options">
+        <item>None</item>
+        <item>Compression</item>
+        <item>Bleeding Control</item>
+        <item>Defibrillation</item>
+    </string-array>
+
+    <string-array name="manage_wound_options">
+        <item>None</item>
+        <item>Cleaning &amp; Disinfecting</item>
+        <item>Dressing &amp; Bandaging</item>
+    </string-array>
+    <string-array name="wound_care_options">
+        <item>None</item>
+        <item>Cleaning &amp; Disinfecting</item>
+        <item>Dressing &amp; Bandaging</item>
+        <item>Compression</item>
+        <item>Tourniquet</item>
+    </string-array>
+
+    <string-array name="manage_immob_options">
+        <item>None</item>
+        <item>C-Spine Control</item>
+        <item>KED</item>
+        <item>Spineboard</item>
+        <item>Splints</item>
+    </string-array>
+    <string-array name="immobilization_options">
+        <item>None</item>
+        <item>C-Spine Control</item>
+        <item>KED</item>
+        <item>Spineboard</item>
+        <item>Splints</item>
+    </string-array>
+
+    <string-array name="manage_other_options">
+        <item>None</item>
+        <item>Positioning</item>
+        <item>Cold/Warm Compress</item>
+    </string-array>
+
+    <string-array name="facility_type_options">
+        <item>Hospital</item>
+        <item>Clinic</item>
+        <item>Home</item>
+        <item>Terminal</item>
+        <item>Institution</item>
+    </string-array>
+
+
+    <string-array name="injury_type_options">
+        <item>None / Not Applicable</item>
+        <item>(B) Burn</item>
+        <item>(C) Contusion</item>
+        <item>(D) Dislocation</item>
+        <item>(F) Fracture</item>
+        <item>(N) Numbness</item>
+        <item>(P) Pain</item>
+        <item>(R) Rash</item>
+        <item>(S) Swelling</item>
+        <item>(W) Wounds/Laceration</item>
+    </string-array>
+
+    <string-array name="body_parts_options">
+        <item>Head/Neck</item>
+        <item>Chest/Torso</item>
+        <item>Abdomen</item>
+        <item>Upper Back</item>
+        <item>Lower Back/Spine</item>
+        <item>Pelvis/Hips</item>
+        <item>Left Shoulder</item>
+        <item>Right Shoulder</item>
+        <item>Left Arm (Upper)</item>
+        <item>Right Arm (Upper)</item>
+        <item>Left Forearm/Hand</item>
+        <item>Right Forearm/Hand</item>
+        <item>Left Leg (Upper/Thigh)</item>
+        <item>Right Leg (Upper/Thigh)</item>
+        <item>Left Lower Leg/Foot</item>
+        <item>Right Lower Leg/Foot</item>
+    </string-array>
+
+</resources>

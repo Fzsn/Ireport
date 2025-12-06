@@ -92,19 +92,6 @@
                     android:layout_marginBottom="15dp" />
 
                 <!-- Agency -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Beneficiary/Agency"
-                    android:textStyle="bold"
-                    android:textColor="#000" />
-
-                <Spinner
-                    android:id="@+id/agencySpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@android:drawable/edit_text"
-                    android:layout_marginBottom="15dp" />
 
                 <!-- Password -->
                 <TextView

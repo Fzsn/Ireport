@@ -1,11 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.Iresponderapp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
     <style name="Theme.Iresponderapp" parent="Base.Theme.Iresponderapp" />
+
+    <style name="InputLabel">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#777777</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
 
     <style name="DetailLabel">
         <item name="android:textSize">14sp</item>
@@ -17,6 +21,37 @@
         <item name="android:textColor">#222</item>
         <item name="android:paddingTop">8dp</item>
         <item name="android:lineSpacingExtra">2dp</item>
-
     </style>
+
+    <style name="HeaderLabel">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#222</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+
+    <style name="SectionHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#D32F2F</item> <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="FormInput">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:background">@android:drawable/edit_text</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+
+
+
 </resources>

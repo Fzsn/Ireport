@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context=".BfpReportFormActivity">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BFP Incident Report Form"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#222"
+                android:layout_marginBottom="16dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="16dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Incident Information"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#333"
+                        android:layout_marginBottom="16dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/DetailLabel"
+                        android:text="Incident Type"/>
+                    <TextView
+                        android:id="@+id/formIncidentType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fire"
+                        android:textSize="16sp"
+                        android:textColor="#222"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/DetailLabel"
+                        android:text="Date &amp; Time"/>
+                    <TextView
+                        android:id="@+id/formIncidentDateTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date/Time"
+                        android:textSize="14sp"
+                        android:textColor="#333"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/DetailLabel"
+                        android:text="Reported by"/>
+                    <TextView
+                        android:id="@+id/formReportedBy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reporter Name"
+                        android:textSize="14sp"
+                        android:textColor="#333"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/DetailLabel"
+                        android:text="Description"/>
+                    <TextView
+                        android:id="@+id/formIncidentDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Details..."
+                        android:textSize="12sp"
+                        android:textColor="#555"
+                        android:background="#F0F0F0"
+                        android:padding="8dp"
+                        android:layout_marginTop="4dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/DetailLabel"
+                        android:text="Address"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:id="@+id/formIncidentAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Address"
+                        android:textSize="14sp"
+                        android:textColor="#333"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/formCoordinates"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lat, Long"
+                        android:textSize="10sp"
+                        android:textColor="#999"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="24dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Details"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#333"
+                        android:layout_marginBottom="16dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/InputLabel"
+                        android:text="Location of Fire"/>
+                    <EditText
+                        android:id="@+id/editFireLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPostalAddress"
+                        android:padding="12dp"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/InputLabel"
+                        android:text="Area Ownership"/>
+                    <EditText
+                        android:id="@+id/editAreaOwnership"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        android:padding="12dp"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/InputLabel"
+                        android:text="Class of Fire"/>
+                    <EditText
+                        android:id="@+id/editClassOfFire"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapCharacters"
+                        android:padding="12dp"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/InputLabel"
+                        android:text="Root Cause of Fire"/>
+                    <EditText
+                        android:id="@+id/editRootCause"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:padding="12dp"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/InputLabel"
+                        android:text="People Injured"/>
+                    <EditText
+                        android:id="@+id/editPeopleInjured"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:padding="12dp"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnSubmitBfpReport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:backgroundTint="#28A745"
+                android:textColor="#FFF"
+                android:textSize="16sp"
+                android:paddingVertical="12dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

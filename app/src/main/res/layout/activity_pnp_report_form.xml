@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context=".PnpReportFormActivity">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PNP Incident Report Form"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#222"
+                android:layout_marginBottom="16dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="16dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/formIncidentType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Incident Type: Crime"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/formIncidentDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date &amp; Time: --"
+                        android:textSize="14sp"/>
+                    <TextView
+                        android:id="@+id/formReportedBy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reported by: --"
+                        android:textSize="14sp"/>
+                    <TextView
+                        android:id="@+id/formIncidentAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Address: --"
+                        android:textSize="14sp"/>
+                    <TextView
+                        android:id="@+id/formIncidentDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Description: --"
+                        android:textSize="14sp"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Suspects"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#333"
+                android:layout_marginBottom="8dp"/>
+
+            <LinearLayout
+                android:id="@+id/containerSuspects"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+            <Button
+                android:id="@+id/btnAddSuspect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="+ Add Suspect"
+                android:backgroundTint="#555"
+                android:textColor="#FFF"
+                android:layout_marginBottom="24dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Victims"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#333"
+                android:layout_marginBottom="8dp"/>
+
+            <LinearLayout
+                android:id="@+id/containerVictims"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+            <Button
+                android:id="@+id/btnAddVictim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="+ Add Victim"
+                android:backgroundTint="#555"
+                android:textColor="#FFF"
+                android:layout_marginBottom="24dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="24dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Narrative of Incident"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp"/>
+                    <EditText
+                        android:id="@+id/editIncidentNarrative"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minLines="5"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        android:hint="Provide a detailed report..."/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnSubmitPnpReport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submit Report and Complete Incident"
+                android:backgroundTint="#006400"
+                android:textColor="#FFF"/>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
