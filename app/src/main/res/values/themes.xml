@@ -1,8 +1,45 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Base.Theme.Iresponderapp" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- Force Light Mode - ignore system dark mode -->
+    <style name="Base.Theme.Iresponderapp" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary_default</item>
+        <item name="colorPrimaryDark">@color/primary_dark_default</item>
+        <item name="colorAccent">@color/accent_default</item>
+        <item name="android:windowBackground">@color/background_light</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
     </style>
 
     <style name="Theme.Iresponderapp" parent="Base.Theme.Iresponderapp" />
+    
+    <!-- Splash Screen Theme - shows custom background immediately -->
+    <style name="Theme.Iresponderapp.Splash" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowBackground">@color/primary_default</item>
+        <item name="android:statusBarColor">@color/primary_default</item>
+        <item name="android:navigationBarColor">@color/primary_default</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <!-- Agency-specific themes -->
+    <style name="Theme.Iresponderapp.PNP" parent="Base.Theme.Iresponderapp">
+        <item name="colorPrimary">@color/pnp_primary</item>
+        <item name="colorPrimaryDark">@color/pnp_primary_dark</item>
+        <item name="colorAccent">@color/pnp_accent</item>
+    </style>
+
+    <style name="Theme.Iresponderapp.BFP" parent="Base.Theme.Iresponderapp">
+        <item name="colorPrimary">@color/bfp_primary</item>
+        <item name="colorPrimaryDark">@color/bfp_primary_dark</item>
+        <item name="colorAccent">@color/bfp_accent</item>
+    </style>
+
+    <style name="Theme.Iresponderapp.MDRRMO" parent="Base.Theme.Iresponderapp">
+        <item name="colorPrimary">@color/mdrrmo_primary</item>
+        <item name="colorPrimaryDark">@color/mdrrmo_primary_dark</item>
+        <item name="colorAccent">@color/mdrrmo_accent</item>
+    </style>
 
     <style name="InputLabel">
         <item name="android:textSize">12sp</item>
@@ -51,7 +88,21 @@
         <item name="android:layout_marginBottom">8dp</item>
     </style>
 
+    <!-- Bottom navigation active indicator: taller to fully wrap icon + label -->
+    <style name="BottomNavActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:height">48dp</item>
+        <item name="android:width">56dp</item>
+        <item name="android:color">@color/background_light</item>
+    </style>
 
+    <!-- Bottom nav text styles -->
+    <style name="BottomNavTextActive" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
+    <style name="BottomNavTextInactive" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">11sp</item>
+    </style>
 
 </resources>

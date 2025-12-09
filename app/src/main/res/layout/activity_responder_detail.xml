@@ -118,13 +118,6 @@
                         android:text="Date/Time: 2025-10-26, 10:30 AM"/>
 
                     <TextView
-                        android:id="@+id/detail_address_full"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        style="@style/DetailValue"
-                        android:text="Address: 207-203 Dulongbayan Iraya Rd"/>
-
-                    <TextView
                         android:id="@+id/detail_additionalInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -134,87 +127,354 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Location"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#333"
-                android:layout_marginBottom="8dp"/>
+            <!-- Location Card -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/mapCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
-                android:layout_marginBottom="16dp">
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
-                    android:id="@+id/mapClickableArea"
-                    android:orientation="vertical"
-                    android:padding="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:src="@drawable/ic_location_on_red"
-                        app:tint="#D32F2F"
-                        android:contentDescription="Map marker icon"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Map View"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#555"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="8dp"/>
-
+                    <!-- Header -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:paddingTop="8dp">
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
 
                         <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:src="@drawable/ic_location_pin"
-                            app:tint="#666"
-                            android:contentDescription="Location pin"
-                            android:layout_marginEnd="8dp"/>
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_location"
+                            app:tint="@color/primary_default"
+                            android:contentDescription="Location icon"/>
 
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            android:text="📍 Incident Location"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary"/>
+                    </LinearLayout>
+
+                    <!-- Address -->
+                    <TextView
+                        android:id="@+id/detail_address_full"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp"
+                        android:paddingBottom="8dp"
+                        android:text="207-203 Dulongbayan Iraya Rd, Daet"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_primary"
+                        android:lineHeight="20dp"/>
+
+                    <!-- Coordinates -->
+                    <TextView
+                        android:id="@+id/detail_coordinate_display"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp"
+                        android:paddingBottom="4dp"
+                        android:text="14.123456, 122.987654"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_secondary"
+                        android:fontFamily="monospace"/>
+
+                    <TextView
+                        android:id="@+id/detail_location_context"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp"
+                        android:paddingBottom="12dp"
+                        android:text="Camarines Norte, Philippines"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_secondary"/>
+
+                    <!-- Static Map Placeholder -->
+                    <ImageView
+                        android:id="@+id/detail_mapImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        android:background="@color/background_light"
+                        android:contentDescription="Map view"/>
+
+                    <!-- Open in Maps Button -->
+                    <LinearLayout
+                        android:id="@+id/mapClickableArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?android:attr/selectableItemBackground">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_location"
+                            app:tint="@color/primary_default"
+                            android:contentDescription="Map icon"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Open in Google Maps"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/primary_default"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Status Timeline Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Header -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📋 Status Timeline"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- Timeline Container -->
+                    <LinearLayout
+                        android:id="@+id/timelineContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- Report Submitted (always shown) -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
+                            android:orientation="horizontal">
+
+                            <!-- Timeline Dot and Line -->
+                            <LinearLayout
+                                android:layout_width="24dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center_horizontal">
+
+                                <View
+                                    android:layout_width="12dp"
+                                    android:layout_height="12dp"
+                                    android:background="@drawable/timeline_dot_pending"/>
+
+                                <View
+                                    android:layout_width="2dp"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:background="#E0E0E0"/>
+                            </LinearLayout>
+
+                            <!-- Content -->
+                            <LinearLayout
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:text="Auto-detected"
-                                android:textSize="12sp"
-                                android:textColor="#555"/>
-                            <TextView
-                                android:id="@+id/detail_coordinate_display"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="14.5995° N, 120.9842° E"
-                                android:textSize="14sp"
-                                android:textColor="#333"/>
-                            <TextView
-                                android:id="@+id/detail_location_context"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Camarines Norte, Philippines"
-                                android:textSize="12sp"
-                                android:textColor="#777"/>
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_marginStart="12dp"
+                                android:paddingBottom="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Report Submitted"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary"/>
+
+                                <TextView
+                                    android:id="@+id/timeline_created_date"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="--"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/text_secondary"/>
+                            </LinearLayout>
                         </LinearLayout>
+
+                        <!-- Assigned Status -->
+                        <LinearLayout
+                            android:id="@+id/timeline_assigned_row"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="24dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center_horizontal">
+
+                                <View
+                                    android:layout_width="12dp"
+                                    android:layout_height="12dp"
+                                    android:background="@drawable/timeline_dot_assigned"/>
+
+                                <View
+                                    android:layout_width="2dp"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:background="#E0E0E0"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_marginStart="12dp"
+                                android:paddingBottom="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Assigned to Responder"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary"/>
+
+                                <TextView
+                                    android:id="@+id/timeline_assigned_date"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="--"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/text_secondary"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- In Progress Status -->
+                        <LinearLayout
+                            android:id="@+id/timeline_inprogress_row"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="24dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center_horizontal">
+
+                                <View
+                                    android:layout_width="12dp"
+                                    android:layout_height="12dp"
+                                    android:background="@drawable/timeline_dot_inprogress"/>
+
+                                <View
+                                    android:layout_width="2dp"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:background="#E0E0E0"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_marginStart="12dp"
+                                android:paddingBottom="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Responder En Route"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary"/>
+
+                                <TextView
+                                    android:id="@+id/timeline_inprogress_date"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="--"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/text_secondary"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Resolved Status -->
+                        <LinearLayout
+                            android:id="@+id/timeline_resolved_row"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="24dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center_horizontal">
+
+                                <View
+                                    android:layout_width="12dp"
+                                    android:layout_height="12dp"
+                                    android:background="@drawable/timeline_dot_resolved"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_marginStart="12dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Incident Resolved"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#4CAF50"/>
+
+                                <TextView
+                                    android:id="@+id/timeline_resolved_date"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="--"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/text_secondary"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

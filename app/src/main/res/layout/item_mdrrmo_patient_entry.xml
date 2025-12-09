@@ -38,16 +38,16 @@
         </LinearLayout>
 
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/SectionHeader" android:text="1. Patient Information" />
-        <EditText android:id="@+id/editPatientName" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Surname, Name, M.I."/>
+        <EditText android:id="@+id/editPatientName" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Full Name (Surname, First Name, M.I.)"/>
         <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <EditText android:id="@+id/editPatientAge" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Age" android:inputType="number"/>
+            <EditText android:id="@+id/editPatientAge" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Age (years)" android:inputType="number"/>
             <EditText android:id="@+id/editPatientSex" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Sex (M/F)"/>
         </LinearLayout>
-        <EditText android:id="@+id/editPatientAddress" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Address"/>
-        <EditText android:id="@+id/editNextOfKin" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Next of Kin / Contact"/>
+        <EditText android:id="@+id/editPatientAddress" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Complete Address"/>
+        <EditText android:id="@+id/editNextOfKin" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Next of Kin / Contact Number"/>
 
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/SectionHeader" android:text="2. Primary Survey" />
-        <EditText android:id="@+id/editChiefComplaint" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Chief Complaint"/>
+        <EditText android:id="@+id/editChiefComplaint" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Chief Complaint / Reason for Call"/>
 
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/InputLabel" android:text="C-Spine"/>
         <Spinner android:id="@+id/spinnerCSpine" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:entries="@array/cspine_options" android:minHeight="48dp"/>
@@ -74,12 +74,12 @@
         <Spinner android:id="@+id/spinnerConsciousness" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:entries="@array/consciousness_options" android:minHeight="48dp"/>
 
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/SectionHeader" android:text="3. Secondary Survey (SAMPLE)" />
-        <EditText android:id="@+id/editSigns" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="(S) Signs &amp; Symptoms"/>
-        <EditText android:id="@+id/editAllergies" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="(A) Allergies"/>
-        <EditText android:id="@+id/editMeds" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="(M) Medications"/>
-        <EditText android:id="@+id/editHistory" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="(P) Past Medical History"/>
-        <EditText android:id="@+id/editOral" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="(L) Last Oral Intake"/>
-        <EditText android:id="@+id/editEvents" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="(E) Events Leading To"/>
+        <EditText android:id="@+id/editSigns" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Signs &amp; Symptoms observed"/>
+        <EditText android:id="@+id/editAllergies" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Known allergies (NKDA if none)"/>
+        <EditText android:id="@+id/editMeds" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Current medications"/>
+        <EditText android:id="@+id/editHistory" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Past medical history"/>
+        <EditText android:id="@+id/editOral" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Last oral intake"/>
+        <EditText android:id="@+id/editEvents" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Events leading to incident"/>
 
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/SectionHeader" android:text="4. Vital Signs (3 Takes)" />
         <include layout="@layout/row_vital_sign_input" android:id="@+id/rowObsTime"/>
@@ -92,12 +92,18 @@
         <include layout="@layout/row_vital_sign_input" android:id="@+id/rowGlucose"/>
         <include layout="@layout/row_vital_sign_input" android:id="@+id/rowPain"/>
 
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/SectionHeader" android:text="5. GCS" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/SectionHeader" android:text="5. Glasgow Coma Scale (GCS)" />
         <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <EditText android:id="@+id/editGcsEye" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Eye"/>
-            <EditText android:id="@+id/editGcsVerbal" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Verbal"/>
-            <EditText android:id="@+id/editGcsMotor" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Motor"/>
-            <EditText android:id="@+id/editGcsTotal" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" style="@style/FormInput" android:hint="Total"/>
+            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Eye (1-4)" android:textSize="11sp" android:textColor="#666" android:gravity="center"/>
+            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Verbal (1-5)" android:textSize="11sp" android:textColor="#666" android:gravity="center"/>
+            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Motor (1-6)" android:textSize="11sp" android:textColor="#666" android:gravity="center"/>
+            <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Total (3-15)" android:textSize="11sp" android:textColor="#666" android:gravity="center"/>
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <EditText android:id="@+id/editGcsEye" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" style="@style/FormInput" android:hint="1-4" android:inputType="number" android:gravity="center"/>
+            <EditText android:id="@+id/editGcsVerbal" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" style="@style/FormInput" android:hint="1-5" android:inputType="number" android:gravity="center"/>
+            <EditText android:id="@+id/editGcsMotor" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" style="@style/FormInput" android:hint="1-6" android:inputType="number" android:gravity="center"/>
+            <EditText android:id="@+id/editGcsTotal" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" style="@style/FormInput" android:hint="3-15" android:inputType="number" android:gravity="center"/>
         </LinearLayout>
 
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/SectionHeader" android:text="6. Management" />
@@ -151,7 +157,7 @@
             android:clickable="true"/>
 
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/InputLabel" android:text="Patient Narrative"/>
-        <EditText android:id="@+id/editPatientNarrative" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:minLines="3"/>
+        <EditText android:id="@+id/editPatientNarrative" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/FormInput" android:minLines="3" android:hint="Additional notes about this patient..."/>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

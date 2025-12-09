@@ -29,6 +29,7 @@
         app:menu="@menu/receiver_bottom_nav"
         app:itemIconTint="@color/nav_item_selector"
         app:itemTextColor="@color/nav_item_selector"
+        app:itemActiveIndicatorStyle="@style/BottomNavActiveIndicator"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

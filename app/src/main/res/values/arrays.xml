@@ -197,4 +197,29 @@
         <item>Right Lower Leg/Foot</item>
     </string-array>
 
+    <!-- Disaster Report Arrays -->
+    <string-array name="disaster_type_options">
+        <item>Select disaster type...</item>
+        <item>Flooding</item>
+        <item>Fire</item>
+        <item>Typhoon</item>
+        <item>Earthquake</item>
+        <item>Landslide</item>
+        <item>Storm Surge</item>
+        <item>Volcanic Activity</item>
+        <item>Drought</item>
+        <item>Building Collapse</item>
+        <item>Hazmat/Chemical Spill</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="damage_level_options">
+        <item>Select damage level...</item>
+        <item>No Damage</item>
+        <item>Minor - Slight damage, habitable</item>
+        <item>Moderate - Significant damage, partially habitable</item>
+        <item>Major - Severe damage, uninhabitable</item>
+        <item>Total - Complete destruction</item>
+    </string-array>
+
 </resources>

@@ -5,29 +5,46 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_light"
     tools:context=".ResponderDashboard">
+
+    <!-- App Header -->
+    <include
+        android:id="@+id/appHeader"
+        layout="@layout/layout_app_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Fragment container where fragments will be loaded -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/dashboardFragmentContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appHeader"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Single Bottom Navigation View -->
+    <!-- Bottom Navigation View -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:background="@android:color/white"
-        android:elevation="8dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="12dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="12dp"
         app:menu="@menu/responder_bottom_nav_menu"
-        app:itemIconTint="@color/nav_item_selector"
-        app:itemTextColor="@color/nav_item_selector"
+        app:itemIconTint="@color/bottom_nav_color_selector"
+        app:itemTextColor="@color/bottom_nav_color_selector"
+        app:itemIconSize="24dp"
+        app:itemActiveIndicatorStyle="@style/BottomNavActiveIndicator"
         app:labelVisibilityMode="labeled"
+        app:itemTextAppearanceActive="@style/BottomNavTextActive"
+        app:itemTextAppearanceInactive="@style/BottomNavTextInactive"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

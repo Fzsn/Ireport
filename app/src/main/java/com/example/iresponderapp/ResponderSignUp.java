@@ -2,206 +2,222 @@ package com.example.iresponderapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
-import android.widget.ArrayAdapter;
+import android.util.Log;
+import android.util.Patterns;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.example.iresponderapp.supabase.SupabaseAuthRepository;
+
+import kotlin.Unit;
 
 public class ResponderSignUp extends AppCompatActivity {
 
-    EditText fullName, contactNumber, email, password, confirmPassword;
-    Spinner beneficiaryAgency, locationSpinner; // ⭐ ADDED locationSpinner
-    Button signUpBtn;
-    TextView signInText;
-
-    DatabaseReference responderDB;
-    FirebaseAuth auth;
+    private EditText fullName, contactNumber, email, password, confirmPassword;
+    private TextView fullNameError, contactError, emailError, passwordError, confirmPasswordError;
+    private Button signUpBtn;
+    private TextView signInText;
+    private ImageView togglePassword;
+    private boolean isPasswordVisible = false;
+    private SupabaseAuthRepository authRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_responder_sign_up);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        initViews();
+        setupListeners();
+    }
 
-        // -----------------------------
-        // 🔗 Connect XML Views
-        // -----------------------------
+    private void initViews() {
         fullName = findViewById(R.id.fullName);
         contactNumber = findViewById(R.id.contactNumber);
         email = findViewById(R.id.email);
-        locationSpinner = findViewById(R.id.locationSpinner); // ⭐ CONNECTED
-        beneficiaryAgency = findViewById(R.id.agencySpinner);
         password = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.confirmPassword);
         signUpBtn = findViewById(R.id.btnSignUp);
         signInText = findViewById(R.id.tvSignIn);
+        togglePassword = findViewById(R.id.togglePassword);
 
-        // -----------------------------
-        // ⭐ Firebase Auth Init
-        // -----------------------------
-        auth = FirebaseAuth.getInstance();
+        // Error TextViews
+        fullNameError = findViewById(R.id.fullNameError);
+        contactError = findViewById(R.id.contactError);
+        emailError = findViewById(R.id.emailError);
+        passwordError = findViewById(R.id.passwordError);
+        confirmPasswordError = findViewById(R.id.confirmPasswordError);
 
-        // -----------------------------
-        // 📌 Location Spinner Options (NEW)
-        // -----------------------------
-        String[] locations = {
-                "Basud",
-                "Capalonga",
-                "Daet",
-                "Jose Panganiban",
-                "Labo",
-                "Mercedes",
-                "Paracale",
-                "San Lorenzo Ruiz",
-                "San Vicente",
-                "Santa Elena",
-                "Talisay",
-                "Vinzons"
-        };
+        IreportApp app = (IreportApp) getApplication();
+        authRepository = (SupabaseAuthRepository) app.getAuthRepository();
+    }
 
-        ArrayAdapter<String> locationAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_dropdown_item,
-                locations);
+    private void setupListeners() {
+        // Clear errors on focus
+        fullName.setOnFocusChangeListener((v, hasFocus) -> { if (hasFocus) hideError(fullNameError); });
+        contactNumber.setOnFocusChangeListener((v, hasFocus) -> { if (hasFocus) hideError(contactError); });
+        email.setOnFocusChangeListener((v, hasFocus) -> { if (hasFocus) hideError(emailError); });
+        password.setOnFocusChangeListener((v, hasFocus) -> { if (hasFocus) hideError(passwordError); });
+        confirmPassword.setOnFocusChangeListener((v, hasFocus) -> { if (hasFocus) hideError(confirmPasswordError); });
 
-        locationSpinner.setAdapter(locationAdapter); // ⭐ SETTING ADAPTER
-
-        // -----------------------------
-        // 📌 Agency Spinner Options (UPDATED)
-        // -----------------------------
-        String[] agencies = {
-                "PNP",
-                "BFP",
-                "MDRRMO"
-        };
-
-        ArrayAdapter<String> agencyAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_dropdown_item,
-                agencies);
-
-        beneficiaryAgency.setAdapter(agencyAdapter); // Renamed adapter for clarity
-
-        // -----------------------------
-        // ⭐ Realtime DB Reference
-        // -----------------------------
-        responderDB = FirebaseDatabase.getInstance()
-                .getReference("IresponderApp")
-                .child("Responders");
-
-        // -----------------------------
-        // 🟢 Sign Up Button Logic
-        // -----------------------------
         signUpBtn.setOnClickListener(v -> registerResponder());
 
-        // -----------------------------
-        // 🔵 If user already has an account
-        // -----------------------------
         signInText.setOnClickListener(v -> {
-            startActivity(new Intent(ResponderSignUp.this, responderSignIn.class));
+            // Go back to sign in screen
             finish();
+        });
+
+        // Password visibility toggle
+        togglePassword.setOnClickListener(v -> {
+            isPasswordVisible = !isPasswordVisible;
+            if (isPasswordVisible) {
+                password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                togglePassword.setImageResource(R.drawable.ic_visibility);
+            } else {
+                password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                togglePassword.setImageResource(R.drawable.ic_visibility_off);
+            }
+            password.setSelection(password.getText().length());
         });
     }
 
-    // ===========================================================
-    // ⭐ Register Responder WITH Firebase Auth
-    // ===========================================================
     private void registerResponder() {
+        // Clear all errors
+        hideAllErrors();
 
         String name = fullName.getText().toString().trim();
         String contact = contactNumber.getText().toString().trim();
         String userEmail = email.getText().toString().trim();
-        String location = locationSpinner.getSelectedItem().toString(); // ⭐ GETTING LOCATION
-        String agency = beneficiaryAgency.getSelectedItem().toString();
         String pass = password.getText().toString().trim();
         String confirmPass = confirmPassword.getText().toString().trim();
 
-        // -----------------------------
-        // ❗ VALIDATION
-        // -----------------------------
-        // NOTE: You should also validate that the spinner selections are not empty,
-        // but since you are using a predefined array, the first item will be selected by default.
-        if (TextUtils.isEmpty(name) ||
-                TextUtils.isEmpty(contact) ||
-                TextUtils.isEmpty(userEmail) ||
-                TextUtils.isEmpty(pass) ||
-                TextUtils.isEmpty(confirmPass)) {
+        // Validate all fields
+        boolean isValid = true;
 
-            Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
-            return;
+        if (TextUtils.isEmpty(name)) {
+            showError(fullNameError, "Full name is required");
+            isValid = false;
+        } else if (name.length() < 2) {
+            showError(fullNameError, "Name must be at least 2 characters");
+            isValid = false;
         }
 
-        if (!pass.equals(confirmPass)) {
-            Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
-            return;
+        if (TextUtils.isEmpty(contact)) {
+            showError(contactError, "Contact number is required");
+            isValid = false;
+        } else if (!contact.matches("^09\\d{9}$")) {
+            showError(contactError, "Enter valid PH number (09XXXXXXXXX)");
+            isValid = false;
         }
 
-        if (contact.length() != 11) {
-            Toast.makeText(this, "Contact number must be 11 digits", Toast.LENGTH_SHORT).show();
-            return;
+        if (TextUtils.isEmpty(userEmail)) {
+            showError(emailError, "Email is required");
+            isValid = false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
+            showError(emailError, "Please enter a valid email address");
+            isValid = false;
         }
 
-        // ================================
-        // ⭐ CREATE ACCOUNT (AUTH)
-        // ================================
-        auth.createUserWithEmailAndPassword(userEmail, pass)
-                .addOnCompleteListener(task -> {
+        if (TextUtils.isEmpty(pass)) {
+            showError(passwordError, "Password is required");
+            isValid = false;
+        } else if (pass.length() < 6) {
+            showError(passwordError, "Password must be at least 6 characters");
+            isValid = false;
+        }
 
-                    if (task.isSuccessful()) {
+        if (TextUtils.isEmpty(confirmPass)) {
+            showError(confirmPasswordError, "Please confirm your password");
+            isValid = false;
+        } else if (!pass.equals(confirmPass)) {
+            showError(confirmPasswordError, "Passwords do not match");
+            isValid = false;
+        }
 
-                        // Firebase Auth UID
-                        String uid = auth.getCurrentUser().getUid();
+        if (!isValid) return;
 
-                        // Create user object
-                        // NOTE: You'll need to update your ResponderModel class
-                        // to include a field for 'location'
-                        ResponderModel responder = new ResponderModel(
-                                uid,
-                                name,
-                                contact,
-                                userEmail,
-                                location, // ⭐ ADDING LOCATION
-                                agency,
-                                pass
-                        );
+        // Disable button and show loading
+        signUpBtn.setEnabled(false);
+        signUpBtn.setText("Creating account...");
 
-                        // Save to Realtime DB
-                        responderDB.child(uid).setValue(responder)
-                                .addOnCompleteListener(dbTask -> {
+        // Agency and station will be assigned by admin later
+        authRepository.signUpResponderAsync(
+                userEmail,
+                pass,
+                name,
+                contact,
+                null,  // agencyId - to be assigned by admin
+                null,  // stationId - to be assigned by admin
+                unit -> {
+                    runOnUiThread(() -> {
+                        Toast.makeText(this, "Verification code sent to your email!", Toast.LENGTH_LONG).show();
+                        // Navigate to OTP verification screen
+                        Intent intent = new Intent(this, OtpVerificationActivity.class);
+                        intent.putExtra(OtpVerificationActivity.EXTRA_EMAIL, userEmail);
+                        intent.putExtra(OtpVerificationActivity.EXTRA_FULL_NAME, name);
+                        intent.putExtra(OtpVerificationActivity.EXTRA_PHONE, contact);
+                        startActivity(intent);
+                        finish();
+                    });
+                    return Unit.INSTANCE;
+                },
+                throwable -> {
+                    runOnUiThread(() -> {
+                        signUpBtn.setEnabled(true);
+                        signUpBtn.setText("Create Account");
 
-                                    if (dbTask.isSuccessful()) {
-                                        Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
+                        String errorMsg = throwable.getMessage();
+                        Log.e("ResponderSignUp", "Sign up error: " + errorMsg, throwable);
 
-                                        // Go to sign in screen
-                                        startActivity(new Intent(this, responderSignIn.class));
-                                        finish();
+                        if (errorMsg != null) {
+                            String lowerMsg = errorMsg.toLowerCase();
+                            if (lowerMsg.contains("already registered") || lowerMsg.contains("already been registered") || lowerMsg.contains("user_already_exists")) {
+                                showError(emailError, "This email is already registered. Try signing in.");
+                            } else if (lowerMsg.contains("email") && lowerMsg.contains("invalid")) {
+                                showError(emailError, "Please enter a valid email address");
+                            } else if (lowerMsg.contains("network") || lowerMsg.contains("timeout") || lowerMsg.contains("connection")) {
+                                Toast.makeText(this, "Network error. Please check your connection.", Toast.LENGTH_LONG).show();
+                            } else if (lowerMsg.contains("password") && lowerMsg.contains("weak")) {
+                                showError(passwordError, "Password is too weak. Use a stronger password.");
+                            } else {
+                                Toast.makeText(this, "Sign up failed: " + errorMsg, Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            Toast.makeText(this, "Sign up failed. Please try again.", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    return Unit.INSTANCE;
+                }
+        );
+    }
 
-                                    } else {
-                                        Toast.makeText(this, "Database error!", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+    private void showError(TextView errorView, String message) {
+        errorView.setText(message);
+        errorView.setVisibility(View.VISIBLE);
+    }
 
-                    } else {
-                        Toast.makeText(this, "Auth failed: " +
-                                task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
+    private void hideError(TextView errorView) {
+        if (errorView != null) errorView.setVisibility(View.GONE);
+    }
+
+    private void hideAllErrors() {
+        hideError(fullNameError);
+        hideError(contactError);
+        hideError(emailError);
+        hideError(passwordError);
+        hideError(confirmPasswordError);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Go back to sign in screen
+        super.onBackPressed();
     }
 }

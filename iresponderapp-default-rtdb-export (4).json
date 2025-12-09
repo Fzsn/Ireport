@@ -1,0 +1,323 @@
+{
+  "IresponderApp": {
+    "Incidents_": {
+      "INCIDENT_ID_001": {
+        "AssignedResponderName": "Gasht hasgdgy (PNP Labo)",
+        "AssignedResponderUID": "26ZAjqwW9hd2MuX7fSOpFuYRNuW2",
+        "Status": "Completed",
+        "Time": "10:30",
+        "additionalInfo": "Suspicious activity",
+        "address": "207-203 Dulongbayan Iraya Rd",
+        "date": "2025-12-4",
+        "imageURL": "https://i.imgur.com/abcd123.jpg",
+        "incidentType": "Crime",
+        "latitude": "",
+        "longitude": "",
+        "reporterName": ""
+      },
+      "INCIDENT_ID_002": {
+        "AssignedResponderName": "Juan Reyes (BFP Daet)",
+        "AssignedResponderUID": "ExvqOKJh7uhFBZvmF7aAclgUGWZ2",
+        "Status": "Completed",
+        "Time": "2:20 am",
+        "additionalInfo": "Fire starting",
+        "address": "f. pimentel, daet ",
+        "date": "2025-3-2",
+        "imageURL": "",
+        "incidentType": "Fire",
+        "latitude": "",
+        "longitude": "",
+        "reporterName": ""
+      },
+      "INCIDENT_ID_003": {
+        "AssignedResponderName": "Nic (MDRRMO labo)",
+        "AssignedResponderUID": "OpMLu0f1pqUH4Rf8zS2B9sa4eGI2",
+        "Status": "Completed",
+        "Time": "9:03 am",
+        "additionalInfo": "faint ",
+        "address": "Labo, Camarines Norte",
+        "date": "2025-11-02",
+        "imageURL": "",
+        "incidentType": "Medical Emergency",
+        "latitude": "",
+        "longitude": "",
+        "reporterName": ""
+      },
+      "INCIDENT_ID_004": {
+        "AssignedResponderName": "Gasht hasgdgy (PNP Labo)",
+        "AssignedResponderUID": "26ZAjqwW9hd2MuX7fSOpFuYRNuW2",
+        "Status": "Assigned",
+        "Time": "10:30 am",
+        "additionalInfo": "Suspicious Activity",
+        "address": "Barangay III",
+        "date": "2025-11-09",
+        "imageURL": "",
+        "incidentType": "Crime",
+        "latitude": "",
+        "longitude": "",
+        "reporterName": ""
+      },
+      "INCIDENT_ID_005": {
+        "AssignedResponderName": "Juan Reyes (BFP Daet)",
+        "AssignedResponderUID": "ExvqOKJh7uhFBZvmF7aAclgUGWZ2",
+        "Status": "Assigned",
+        "Time": "1:00 pm",
+        "additionalInfo": "Fire Starting",
+        "address": "Barangay Camambugan, Daet",
+        "date": "2025-12-13",
+        "imageURL": "",
+        "incidentType": "Fire",
+        "latitude": "",
+        "longitude": "",
+        "reporterName": ""
+      },
+      "INCIDENT_ID_006": {
+        "AssignedResponderName": "Nic (MDRRMO labo)",
+        "AssignedResponderUID": "-OewADbyYPb1srJyebS2",
+        "Status": "Assigned",
+        "Time": "8:00 am",
+        "additionalInfo": "None",
+        "address": "labo, Camarines Norte",
+        "date": "2025-12-04",
+        "imageURL": "",
+        "incidentType": "MedicalEmergency",
+        "latitude": "",
+        "longitude": "",
+        "reporterName": ""
+      }
+    },
+    "Receivers": {
+      "6ndRI7qKnKSJafRAB3zN7B8cNWC3": {
+        "agency": "PNP",
+        "contactNumber": "09614396856",
+        "email": "nicolefstanton03@gmail.com",
+        "fullName": "Juan Dela Cruz",
+        "location": "Labo",
+        "receiverId": "6ndRI7qKnKSJafRAB3zN7B8cNWC3"
+      },
+      "NkXdtQ30TWd1aLtFlCW0IGWe2u22": {
+        "agency": "BFP",
+        "contactNumber": "09614678924",
+        "email": "w@gmail.com",
+        "fullName": "Rob",
+        "location": "Labo",
+        "receiverId": "NkXdtQ30TWd1aLtFlCW0IGWe2u22"
+      },
+      "OpMLu0f1pqUH4Rf8zS2B9sa4eGI2": {
+        "agency": "PNP",
+        "contactNumber": "09614396856",
+        "email": "nicolefstanton@gmail.com",
+        "fullName": "Juan Dela Cruz",
+        "location": "Labo",
+        "receiverId": "OpMLu0f1pqUH4Rf8zS2B9sa4eGI2"
+      },
+      "zBQ9nQKrBSVNHeQJOqV4BYbXfG42": {
+        "agency": "MDRRMO",
+        "contactNumber": "09672837653",
+        "email": "post@gmail.com",
+        "fullName": "Robert Cruz",
+        "location": "Labo",
+        "receiverId": "zBQ9nQKrBSVNHeQJOqV4BYbXfG42"
+      },
+      "zpnqOPtuVjOJk4vioxxlr8lYZs72": {
+        "agency": "BFP",
+        "contactNumber": "09678392768",
+        "email": "dst6784@gmail.com",
+        "fullName": "Juan Cruz",
+        "location": "Daet",
+        "receiverId": "zpnqOPtuVjOJk4vioxxlr8lYZs72"
+      }
+    },
+    "Reports": {
+      "BFP": {
+        "INCIDENT_ID_002": {
+          "areaOwnership": "residential",
+          "classOfFire": "N/A",
+          "fireLocation": "home",
+          "incidentKey": "INCIDENT_ID_002",
+          "peopleInjured": "50",
+          "responderUid": "ExvqOKJh7uhFBZvmF7aAclgUGWZ2",
+          "rootCause": "ember",
+          "timestamp": "2025-12-06 12:21:36"
+        }
+      },
+      "MDRRMO": {
+        "INCIDENT_ID_003": {
+          "areaType": "",
+          "emergencyType": "",
+          "facilityName": "",
+          "facilityType": "",
+          "incidentKey": "INCIDENT_ID_003",
+          "incidentLocation": "Labo, Camarines Norte",
+          "narrative": "",
+          "natureOfCall": "",
+          "patients": [
+            {
+              "address": "",
+              "affected_body_parts": "",
+              "age": "",
+              "airway": "Clear",
+              "allergies": "",
+              "bp": {
+                "t1": "",
+                "t2": "",
+                "t3": ""
+              },
+              "breathing": "Normal",
+              "c_spine": "Not Indicated",
+              "cap_refill": "< 2 Seconds",
+              "cap_vital": {
+                "t1": "",
+                "t2": "",
+                "t3": ""
+              },
+              "chiefComplaint": "",
+              "consciousness": "Alert",
+              "events": "",
+              "gcs_eye": "",
+              "gcs_motor": "",
+              "gcs_total": "",
+              "gcs_verbal": "",
+              "glucose": {
+                "t1": "",
+                "t2": "",
+                "t3": ""
+              },
+              "history": "",
+              "injury_type": "",
+              "loc": "No",
+              "manage_airway": "None",
+              "manage_circ": "None",
+              "manage_immob": "None",
+              "manage_other": "None",
+              "manage_wound": "None",
+              "meds": "",
+              "name": "",
+              "nextOfKin": "",
+              "obs_time": {
+                "t1": "",
+                "t2": "",
+                "t3": ""
+              },
+              "oral": "",
+              "pain": {
+                "t1": "",
+                "t2": "",
+                "t3": ""
+              },
+              "patient_narrative": "",
+              "pulse": "Present",
+              "pulse_rate": {
+                "t1": "",
+                "t2": "",
+                "t3": ""
+              },
+              "resp_rate": {
+                "t1": "",
+                "t2": "",
+                "t3": ""
+              },
+              "sex": "",
+              "signs": "",
+              "skin": "Normal",
+              "spo2": {
+                "t1": "",
+                "t2": "",
+                "t3": ""
+              },
+              "temp": {
+                "t1": "",
+                "t2": "",
+                "t3": ""
+              }
+            }
+          ],
+          "responderUid": "OpMLu0f1pqUH4Rf8zS2B9sa4eGI2",
+          "time_base": "10:15",
+          "time_call": "09:30",
+          "time_clear": "10:00",
+          "time_depart": "09:40",
+          "time_dispatch": "09:30",
+          "time_facility": "09:40",
+          "time_handover": "09:44",
+          "time_scene": "09:35",
+          "timestamp": "2025-12-07 15:07"
+        }
+      },
+      "PNP": {
+        "INCIDENT_ID_001": {
+          "incidentKey": "INCIDENT_ID_001",
+          "narrative": "n/a",
+          "responderUid": "26ZAjqwW9hd2MuX7fSOpFuYRNuW2",
+          "suspects": [
+            {
+              "address": "Labo, Camarines Norte",
+              "firstName": "James",
+              "lastName": "Reyes",
+              "middleName": "Cruz",
+              "occupation": "None",
+              "status": "N/a"
+            }
+          ],
+          "timestamp": "2025-12-06 11:16:26",
+          "victims": [
+            {
+              "address": "Labo, Camarines Norte",
+              "firstName": "Juan",
+              "lastName": "Cruc",
+              "middleName": "Lu",
+              "occupation": "None",
+              "status": "None"
+            }
+          ]
+        }
+      }
+    },
+    "Responders": {
+      "-OewADbyYPb1srJyebS2": {
+        "agency": "MDRRMO",
+        "contactNumber": "09614396856",
+        "email": "nicolefstanton@gmail.com",
+        "fullName": "Nic",
+        "location": "labo",
+        "password": "qwerty",
+        "userId": "OpMLu0f1pqUH4Rf8zS2B9sa4eGI2"
+      },
+      "26ZAjqwW9hd2MuX7fSOpFuYRNuW2": {
+        "agency": "PNP",
+        "contactNumber": "09872935678",
+        "email": "west@gmail.com",
+        "fullName": "Gasht hasgdgy",
+        "location": "Labo",
+        "password": "qwerty",
+        "userId": "26ZAjqwW9hd2MuX7fSOpFuYRNuW2"
+      },
+      "ExvqOKJh7uhFBZvmF7aAclgUGWZ2": {
+        "agency": "BFP",
+        "contactNumber": "09876378283",
+        "email": "mitch@gmail.com",
+        "fullName": "Juan Reyes",
+        "location": "Daet",
+        "password": "qwerty",
+        "userId": "ExvqOKJh7uhFBZvmF7aAclgUGWZ2"
+      },
+      "av5l9OIBiObEzQ9NU3iwI2J1ozw1": {
+        "agency": "PNP",
+        "contactNumber": "09142734848",
+        "email": "kxooxkzxxz@gmail.com",
+        "fullName": "test",
+        "location": "Basud",
+        "password": "1w3r5y7i9p",
+        "userId": "av5l9OIBiObEzQ9NU3iwI2J1ozw1"
+      },
+      "o90njx1vm8bK7d9S1Otn3JPI2Sj1": {
+        "agency": "PNP",
+        "contactNumber": "09464646464",
+        "email": "kenjimazo@gmail.com",
+        "fullName": "Kenji",
+        "password": "1w3r5y7i9p",
+        "userId": "o90njx1vm8bK7d9S1Otn3JPI2Sj1"
+      }
+    }
+  }
+}

@@ -3,6 +3,7 @@ package com.example.iresponderapp;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,17 +11,17 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.example.iresponderapp.supabase.SupabaseUnitReportsRepository;
+import com.example.iresponderapp.supabase.UnitReport;
+
+import kotlin.Unit;
 
 public class FormsFragment extends Fragment {
 
     private LinearLayout formsListContainer;
-    private String currentUid;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private SupabaseUnitReportsRepository unitReportsRepository;
+    private boolean isLoading = false;
 
     public FormsFragment() {
         // Required empty public constructor
@@ -30,12 +31,17 @@ public class FormsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_forms, container, false);
         formsListContainer = view.findViewById(R.id.formsListContainer);
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
 
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            currentUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            // REMOVED load calls here to prevent duplicates on startup.
-            // The onResume() method will handle it.
-        }
+        // Initialize Supabase repository
+        IreportApp app = (IreportApp) requireActivity().getApplication();
+        unitReportsRepository = (SupabaseUnitReportsRepository) app.getUnitReportsRepository();
+
+        // Setup pull-to-refresh
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            loadAllReports();
+        });
+
         return view;
     }
 
@@ -45,85 +51,113 @@ public class FormsFragment extends Fragment {
         // Clear the list completely before reloading to prevent duplicates
         if(formsListContainer != null) formsListContainer.removeAllViews();
 
-        if (currentUid != null) {
-            loadReportsFromFolder("PNP");
-            loadReportsFromFolder("BFP");
-            loadReportsFromFolder("MDRRMO");
+        if (unitReportsRepository != null) {
+            loadAllReports();
         }
     }
 
-    private void loadReportsFromFolder(String agencyFolder) {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("IresponderApp").child("Reports").child(agencyFolder);
+    private void loadAllReports() {
+        if (isLoading) return;
+        isLoading = true;
+        unitReportsRepository.loadAllMyReportsAsync(
+                reports -> {
+                    if (getContext() == null) return Unit.INSTANCE;
 
-        // Use SingleValueEvent to load data ONCE.
-        // This prevents the "infinite duplication" bug when navigating back and forth.
-        ref.orderByChild("responderUid").equalTo(currentUid)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot snapshot) {
-                        if (!snapshot.exists()) return;
+                    // Clear existing views to prevent duplicates on refresh
+                    formsListContainer.removeAllViews();
 
-                        LayoutInflater inflater = LayoutInflater.from(getContext());
+                    LayoutInflater inflater = LayoutInflater.from(getContext());
 
-                        for (DataSnapshot data : snapshot.getChildren()) {
-                            try {
-                                final String incidentKey = data.child("incidentKey").getValue(String.class);
-                                String date = data.child("timestamp").getValue(String.class);
+                    for (UnitReport report : reports) {
+                        try {
+                            final String incidentKey = report.getIncidentId();
+                            String agency = report.getAgency();
+                            String title = report.getTitle();
+                            String createdAt = report.getCreatedAt();
+                            String date = createdAt != null && createdAt.length() >= 10 ? createdAt.substring(0, 10) : "--";
+                            
+                            // Get report type from details for MDRRMO reports
+                            final String reportType = getReportType(report);
 
-                                // --- NEW DISPLAY LOGIC ---
-                                String displayName = agencyFolder + " Incident"; // Default
+                            // Create the Card Row
+                            View row = inflater.inflate(R.layout.item_submitted_form, formsListContainer, false);
 
-                                if (agencyFolder.equals("MDRRMO")) {
-                                    // CHANGED: Now looks for Nature/Type instead of Patient Name
-                                    String nature = data.child("natureOfCall").getValue(String.class);
-                                    String type = data.child("emergencyType").getValue(String.class);
+                            String shortId = (incidentKey != null && incidentKey.length() > 8)
+                                    ? incidentKey.substring(0, 8).toUpperCase() : "---";
 
-                                    if (nature != null && !nature.isEmpty()) {
-                                        displayName = nature;
-                                        if (type != null && !type.isEmpty()) displayName += " (" + type + ")";
-                                    } else {
-                                        displayName = "Medical/Trauma Incident";
-                                    }
+                            ((TextView) row.findViewById(R.id.rowIncidentId)).setText("#" + shortId);
+                            ((TextView) row.findViewById(R.id.rowPrimaryName)).setText(title != null ? title : agency + " Report");
+                            ((TextView) row.findViewById(R.id.rowDate)).setText(date);
 
-                                } else if (agencyFolder.equals("BFP")) {
-                                    String loc = data.child("fireLocation").getValue(String.class);
-                                    if (loc != null) displayName = "Fire: " + loc;
-
-                                } else if (agencyFolder.equals("PNP")) {
-                                    displayName = "Crime Incident Report";
-                                }
-
-                                // Create the Card Row
-                                View row = inflater.inflate(R.layout.item_submitted_form, formsListContainer, false);
-
-                                String shortId = (incidentKey != null && incidentKey.length() > 5)
-                                        ? incidentKey.substring(incidentKey.length() - 5) : "---";
-
-                                ((TextView) row.findViewById(R.id.rowIncidentId)).setText("#" + shortId);
-                                ((TextView) row.findViewById(R.id.rowPrimaryName)).setText(displayName);
-                                ((TextView) row.findViewById(R.id.rowDate)).setText(date != null ? date.split(" ")[0] : "--");
-
-                                ImageButton btnEdit = row.findViewById(R.id.btnRowEdit);
-                                btnEdit.setOnClickListener(v -> openEditForm(agencyFolder, incidentKey));
-
-                                formsListContainer.addView(row);
-
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                            // Set agency badge
+                            TextView agencyBadge = row.findViewById(R.id.rowAgencyBadge);
+                            agencyBadge.setText(agency);
+                            // Set badge color based on agency
+                            int badgeColor;
+                            switch (agency) {
+                                case "PNP": badgeColor = 0xFF1565C0; break; // Blue
+                                case "BFP": badgeColor = 0xFFD32F2F; break; // Red
+                                case "MDRRMO": badgeColor = 0xFF388E3C; break; // Green
+                                default: badgeColor = 0xFF757575; break; // Gray
                             }
+                            agencyBadge.getBackground().setTint(badgeColor);
+
+                            ImageButton btnEdit = row.findViewById(R.id.btnRowEdit);
+                            btnEdit.setOnClickListener(v -> openEditForm(agency, incidentKey, reportType));
+
+                            formsListContainer.addView(row);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
-
-                    @Override
-                    public void onCancelled(DatabaseError error) {}
-                });
+                    // Stop refresh animation
+                    isLoading = false;
+                    if (swipeRefreshLayout != null) {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                    return Unit.INSTANCE;
+                },
+                throwable -> {
+                    // Handle error silently
+                    // Stop refresh animation
+                    isLoading = false;
+                    if (swipeRefreshLayout != null) {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                    return Unit.INSTANCE;
+                }
+        );
     }
 
-    private void openEditForm(String agency, String incidentKey) {
+    private String getReportType(UnitReport report) {
+        try {
+            if (report.getDetails() != null) {
+                org.json.JSONObject details = new org.json.JSONObject(report.getDetails().toString());
+                return details.optString("report_type", "MEDICAL");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "MEDICAL"; // Default to medical/rescue form
+    }
+
+    private void openEditForm(String agency, String incidentKey, String reportType) {
         Class<?> targetActivity;
-        if (agency.equals("PNP")) targetActivity = PnpReportFormActivity.class;
-        else if (agency.equals("BFP")) targetActivity = BfpReportFormActivity.class;
-        else targetActivity = MdrrmoReportFormActivity.class;
+        if (agency.equals("PNP")) {
+            targetActivity = PnpReportFormActivity.class;
+        } else if (agency.equals("BFP")) {
+            targetActivity = BfpReportFormActivity.class;
+        } else if (agency.equals("MDRRMO")) {
+            // Check report type for MDRRMO
+            if ("DISASTER".equals(reportType)) {
+                targetActivity = MdrrmoDisasterReportFormActivity.class;
+            } else {
+                targetActivity = MdrrmoReportFormActivity.class;
+            }
+        } else {
+            targetActivity = MdrrmoReportFormActivity.class;
+        }
 
         Intent intent = new Intent(getContext(), targetActivity);
         intent.putExtra("INCIDENT_KEY", incidentKey);

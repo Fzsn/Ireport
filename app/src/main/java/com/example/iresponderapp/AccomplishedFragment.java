@@ -14,17 +14,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Button;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.example.iresponderapp.supabase.IncidentSummary;
+import com.example.iresponderapp.supabase.SupabaseIncidentsRepository;
+
+import java.util.Arrays;
+import java.util.List;
+
+import kotlin.Unit;
 
 public class AccomplishedFragment extends Fragment {
 
     private static final String TAG = "AccomplishedFragment";
     private LinearLayout incidentListContainer;
-    private DatabaseReference incidentRef;
+    private SupabaseIncidentsRepository incidentsRepository;
 
     private TextView filterApproved;
     private TextView filterDeclined;
@@ -47,7 +49,9 @@ public class AccomplishedFragment extends Fragment {
         filterApproved = view.findViewById(R.id.filterApproved);
         filterDeclined = view.findViewById(R.id.filterDeclined);
 
-        incidentRef = FirebaseDatabase.getInstance().getReference("IresponderApp").child("Incidents_");
+        // Initialize Supabase repository
+        IreportApp app = (IreportApp) requireActivity().getApplication();
+        incidentsRepository = (SupabaseIncidentsRepository) app.getIncidentsRepository();
 
         setupFilters();
         loadAccomplishedIncidents();
@@ -107,46 +111,37 @@ public class AccomplishedFragment extends Fragment {
 
 
     private void loadAccomplishedIncidents() {
-        incidentRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
+        // Determine which statuses to load based on filter
+        List<String> statusesToLoad;
+        if (currentFilterStatus.equals("ASSIGNED")) {
+            statusesToLoad = Arrays.asList("assigned");
+        } else if (currentFilterStatus.equals("REJECTED")) {
+            statusesToLoad = Arrays.asList("rejected");
+        } else {
+            // ALL - load all non-pending statuses
+            statusesToLoad = Arrays.asList("assigned", "in_progress", "resolved", "closed", "rejected");
+        }
 
-                if (getContext() == null) return;
-                incidentListContainer.removeAllViews();
-                LayoutInflater inflater = LayoutInflater.from(getContext());
+        incidentsRepository.loadIncidentsByStatusListAsync(
+                statusesToLoad,
+                incidents -> {
+                    if (getContext() == null) return Unit.INSTANCE;
+                    incidentListContainer.removeAllViews();
+                    LayoutInflater inflater = LayoutInflater.from(getContext());
 
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    String status = data.child("Status").getValue(String.class);
+                    for (IncidentSummary incident : incidents) {
+                        String status = incident.getStatus();
+                        if (status == null) continue;
+                        String statusUpper = status.toUpperCase();
 
-                    if (status == null) continue;
+                        final String incidentKey = incident.getId();
+                        String incidentCode = incidentKey.length() > 8 ? incidentKey.substring(0, 8) : incidentKey;
+                        String type = incident.getAgencyType();
+                        String date = incident.getCreatedAt() != null && incident.getCreatedAt().length() >= 10
+                                ? incident.getCreatedAt().substring(0, 10) : "--";
+                        String location = incident.getLocationAddress();
 
-                    // --- FILTERING LOGIC: LOCAL FILTER BY STATUS ---
-                    boolean matchesFilter = false;
-                    String statusUpper = status.toUpperCase();
-
-                    // 1. Check if the status is a finalized one
-                    boolean isFinalized = !statusUpper.equals("PENDING");
-
-                    // 2. Filter based on the selected UI tab
-                    if (currentFilterStatus.equals("ALL")) {
-                        matchesFilter = isFinalized;
-                    } else if (currentFilterStatus.equals("ASSIGNED")) {
-                        // Check for assigned status
-                        matchesFilter = statusUpper.equals("ASSIGNED");
-                    } else if (currentFilterStatus.equals("REJECTED")) {
-                        // Check for rejected or declined status
-                        matchesFilter = statusUpper.equals("REJECTED") || statusUpper.equals("DECLINED");
-                    }
-
-                    if (matchesFilter) {
-
-                        final String incidentKey = data.getKey();
-                        String incidentCode = incidentKey;
-                        String type = data.child("incidentType").getValue(String.class);
-                        String date = data.child("date").getValue(String.class);
-                        String location = data.child("address").getValue(String.class);
-
-                        // Inflate the NEW, dedicated incident card layout
+                        // Inflate the dedicated incident card layout
                         View card = inflater.inflate(R.layout.incident_card_accomplished, incidentListContainer, false);
 
                         // Populate card views
@@ -155,7 +150,7 @@ public class AccomplishedFragment extends Fragment {
                         ((TextView) card.findViewById(R.id.incidentDate)).setText(date);
                         ((TextView) card.findViewById(R.id.incidentLocation)).setText(location);
 
-                        // Set the status text where the priority used to be
+                        // Set the status text
                         TextView statusTv = card.findViewById(R.id.incidentPriority);
                         statusTv.setText(statusUpper);
 
@@ -166,13 +161,9 @@ public class AccomplishedFragment extends Fragment {
                             statusTv.setTextColor(getResources().getColor(R.color.green));
                         }
 
-                        // === BUTTONS ADJUSTMENT ===
-                        // ONLY reference the button that exists in incident_card_accomplished.xml
                         Button btnView = card.findViewById(R.id.btnViewDetails);
-
                         btnView.setText("SEE MORE DETAILS");
 
-                        // Handle click to view full history/details (AccomplishedDetailsActivity)
                         btnView.setOnClickListener(v -> {
                             Intent intent = new Intent(getContext(), AccomplishedDetailsActivity.class);
                             intent.putExtra("INCIDENT_KEY", incidentKey);
@@ -182,14 +173,13 @@ public class AccomplishedFragment extends Fragment {
 
                         incidentListContainer.addView(card);
                     }
+                    return Unit.INSTANCE;
+                },
+                throwable -> {
+                    Log.e(TAG, "Database Error: " + throwable.getMessage());
+                    Toast.makeText(getContext(), "Failed to load accomplished incidents.", Toast.LENGTH_LONG).show();
+                    return Unit.INSTANCE;
                 }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                Log.e(TAG, "Database Error: " + error.getMessage());
-                Toast.makeText(getContext(), "Failed to load accomplished incidents.", Toast.LENGTH_LONG).show();
-            }
-        });
+        );
     }
 }

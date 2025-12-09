@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:fitsSystemWindows="false"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <!-- Back Button -->
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="start"
+            android:layout_marginBottom="16dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_arrow_back"
+            android:contentDescription="Back"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+        <!-- Icon -->
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/logov1_padded_white"
+            android:contentDescription="Email verification" />
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Verify Your Email"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <!-- Subtitle -->
+        <TextView
+            android:id="@+id/tvSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="We've sent a 6-digit code to your email"
+            android:textSize="14sp"
+            android:textColor="@color/gray_600"
+            android:gravity="center" />
+
+        <!-- Email display -->
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="example@email.com"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/teal_700" />
+
+        <!-- OTP Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusTopStart="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editOtpCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter 6-digit code"
+                android:inputType="number"
+                android:maxLength="6"
+                android:textSize="18sp"
+                android:letterSpacing="0.3"
+                android:gravity="center"
+                android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Error message -->
+        <TextView
+            android:id="@+id/tvError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/error_red"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+        <!-- Verify Button -->
+        <Button
+            android:id="@+id/btnVerify"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="24dp"
+            android:text="Verify"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/teal_700"
+            app:cornerRadius="12dp" />
+
+        <!-- Resend Code -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Didn't receive the code? "
+                android:textSize="14sp"
+                android:textColor="@color/gray_600" />
+
+            <TextView
+                android:id="@+id/tvResendCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resend"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/teal_700"
+                android:padding="4dp"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+
+        </LinearLayout>
+
+        <!-- Timer -->
+        <TextView
+            android:id="@+id/tvTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Resend available in 60s"
+            android:textSize="12sp"
+            android:textColor="@color/gray_500"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</ScrollView>

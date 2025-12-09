@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base Colors -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green">#008000</color>
@@ -8,13 +9,58 @@
     <color name="orange">#FFA500</color>
     <color name="blue">#0000FF</color>
 
+    <!-- Light Theme Base (from ireport_v1) -->
+    <color name="background_light">#E8F3F1</color>
+    <color name="surface_light">#FFFFFF</color>
+    <color name="text_primary">#2C3E3B</color>
+    <color name="text_secondary">#6B7F7C</color>
+    <color name="text_light">#9BAAA7</color>
 
+    <!-- Default App Colors (Teal - from ireport_v1) -->
+    <color name="colorPrimary">#4A5F5C</color>
+    <color name="primary_default">#4A5F5C</color>
+    <color name="primary_dark_default">#3A4F4C</color>
+    <color name="accent_default">#F4B89A</color>
+    <color name="secondary_default">#8FA39E</color>
 
+    <!-- Input/Form Colors -->
+    <color name="input_background">#F8FAFA</color>
+    <color name="input_border">#D1DBD9</color>
+    <color name="input_border_focused">#4A5F5C</color>
+    <color name="error">#DC2626</color>
+    <color name="link_color">#4A5F5C</color>
 
+    <!-- PNP Colors (Blue) -->
+    <color name="pnp_primary">#1565C0</color>
+    <color name="pnp_primary_dark">#0D47A1</color>
+    <color name="pnp_accent">#1E88E5</color>
+    <color name="pnp_light">#E3F2FD</color>
+
+    <!-- BFP Colors (Red/Orange) -->
+    <color name="bfp_primary">#D32F2F</color>
+    <color name="bfp_primary_dark">#B71C1C</color>
+    <color name="bfp_accent">#FF5722</color>
+    <color name="bfp_light">#FFEBEE</color>
+
+    <!-- MDRRMO Colors (Orange/Yellow) -->
+    <color name="mdrrmo_primary">#F57C00</color>
+    <color name="mdrrmo_primary_dark">#E65100</color>
+    <color name="mdrrmo_accent">#FF9800</color>
+    <color name="mdrrmo_light">#FFF3E0</color>
+
+    <!-- Status Colors -->
     <color name="green_active">#81C784</color>
     <color name="green_outline">#A5D6A7</color>
     <color name="red_active">#E57373</color>
     <color name="red_outline">#EF9A9A</color>
 
+    <!-- Card/UI Colors -->
+    <color name="card_background">#FFFFFF</color>
+    <color name="divider">#E0E0E0</color>
 
+    <!-- Extra shades used in OTP screen -->
+    <color name="gray_600">#6B7F7C</color>
+    <color name="gray_500">#9BAAA7</color>
+    <color name="teal_700">#3A4F4C</color>
+    <color name="error_red">#DC2626</color>
 </resources>

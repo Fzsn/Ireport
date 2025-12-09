@@ -2,97 +2,167 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
     android:layout_marginTop="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    android:layout_marginBottom="8dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="3dp">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <RelativeLayout
+        <!-- Header Row: Type and Status Badge -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <TextView
-                android:id="@+id/incidentCode"
-                android:layout_width="wrap_content"
+                android:id="@+id/incidentType"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PNP"
+                android:textColor="@color/text_primary"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#222"
-                android:text="#IR-ABC123"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/incidentPriority"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:textSize="14sp"
-                android:textColor="@color/blue"
-                android:text="ACTIVE"/>
-        </RelativeLayout>
+                android:background="@drawable/status_badge_assigned"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="4dp"
+                android:text="ASSIGNED"
+                android:textColor="@android:color/white"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
+        <!-- Incident ID -->
         <TextView
-            android:id="@+id/incidentType"
+            android:id="@+id/incidentCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="#444"
-            android:layout_marginTop="4dp"
-            android:text="Crime"/>
-
-        <LinearLayout
-            android:orientation="horizontal"
             android:layout_marginTop="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:text="#ABC12345"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            android:fontFamily="monospace" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Date: "
-                android:textColor="#666"/>
+        <!-- Date and Time Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_calendar"
+                android:contentDescription="Date"
+                app:tint="@color/text_secondary" />
+
             <TextView
                 android:id="@+id/incidentDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#666"
-                android:text="2025-10-22"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginTop="4dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:layout_marginStart="8dp"
+                android:text="Dec 8, 2025"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/incidentTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Location: "
-                android:textColor="#666"/>
+                android:layout_marginStart="12dp"
+                android:text="04:30"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Location Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="top">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="2dp"
+                android:src="@drawable/ic_location"
+                android:contentDescription="Location"
+                app:tint="@color/text_secondary" />
+
             <TextView
                 android:id="@+id/incidentLocation"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="#666"
-                android:text="Vinzon Ave, Daet, Camarines Norte"/>
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Vinzons Ave, Daet, Camarines Norte"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:maxLines="2"
+                android:ellipsize="end" />
         </LinearLayout>
 
+        <!-- Coordinates Row -->
+        <LinearLayout
+            android:id="@+id/coordinatesRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:visibility="visible">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:src="@drawable/ic_location"
+                android:contentDescription="Coordinates"
+                app:tint="@color/accent_default" />
+
+            <TextView
+                android:id="@+id/incidentCoordinates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="14.123456, 122.987654"
+                android:textColor="@color/accent_default"
+                android:textSize="12sp"
+                android:fontFamily="monospace" />
+        </LinearLayout>
+
+        <!-- Action Button -->
         <Button
             android:id="@+id/btnViewDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#3F51B5"
-            android:text="view details"
-            android:textColor="#FFF" />
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/primary_default"
+            android:text="TAKE ACTION"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:paddingVertical="12dp" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

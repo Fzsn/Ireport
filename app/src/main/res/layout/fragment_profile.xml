@@ -30,6 +30,26 @@
                 android:textStyle="bold"
                 android:textColor="#222"
                 android:layout_marginBottom="16dp"/>
+            
+            <!-- Loading indicator -->
+            <LinearLayout
+                android:id="@+id/loadingContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="24dp"
+                android:visibility="visible">
+                <ProgressBar
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="12dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Loading profile..."
+                    android:textColor="#666"/>
+            </LinearLayout>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -89,37 +109,109 @@
                         android:background="#EEE"
                         android:layout_marginBottom="12dp"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Agency"
-                        android:textSize="12sp"
-                        android:textColor="#777"/>
-                    <TextView
-                        android:id="@+id/profileAgency"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="-"
-                        android:textSize="16sp"
-                        android:textColor="#333"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_marginBottom="12dp">
+                        
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Agency"
+                                android:textSize="12sp"
+                                android:textColor="#777"/>
+                            <TextView
+                                android:id="@+id/profileAgency"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textSize="16sp"
+                                android:textColor="#333"
+                                android:textStyle="bold"/>
+                        </LinearLayout>
+                        
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Role"
+                                android:textSize="12sp"
+                                android:textColor="#777"/>
+                            <TextView
+                                android:id="@+id/profileRole"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textSize="16sp"
+                                android:textColor="#333"
+                                android:textStyle="bold"/>
+                        </LinearLayout>
+                    </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Location"
-                        android:textSize="12sp"
-                        android:textColor="#777"/>
-                    <TextView
-                        android:id="@+id/profileLocation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="-"
-                        android:textSize="16sp"
-                        android:textColor="#333"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="16dp"/>
+                        android:layout_marginBottom="12dp">
+                        
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Phone"
+                                android:textSize="12sp"
+                                android:textColor="#777"/>
+                            <TextView
+                                android:id="@+id/profilePhone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textSize="16sp"
+                                android:textColor="#333"
+                                android:textStyle="bold"/>
+                        </LinearLayout>
+                        
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Station"
+                                android:textSize="12sp"
+                                android:textColor="#777"/>
+                            <TextView
+                                android:id="@+id/profileLocation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textSize="16sp"
+                                android:textColor="#333"
+                                android:textStyle="bold"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#EEE"
+                        android:layout_marginBottom="12dp"/>
 
                     <Button
                         android:id="@+id/btnEditProfile"
@@ -130,15 +222,6 @@
                         android:textColor="#333"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
-            <Button
-                android:id="@+id/btnDeleteProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Delete Profile"
-                android:backgroundTint="#E57373"
-                android:textColor="#FFF"
-                android:layout_marginBottom="16dp"/>
 
             <Button
                 android:id="@+id/btnSignOut"
